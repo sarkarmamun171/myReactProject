@@ -1,13 +1,13 @@
+import Hero from "./component/Hero";
+
 const App = () => {
-  let status=false;
+ const ItemObj={
+  name:'Mamun',
+  age:30,
+ }
   return (
     <div>
-      {
-        status?
-        <button>Logout Btn</button>
-        :
-        <button>Login Btn</button>
-      }
+    <Hero Item={ItemObj}/>
     </div>
   );
 };

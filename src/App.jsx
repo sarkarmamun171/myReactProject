@@ -1,13 +1,17 @@
 import Hero from "./component/Hero";
 
 const App = () => {
- const ItemObj={
-  name:'Mamun',
-  age:30,
- }
+  const submitForm=(e)=>{
+    e.preventDefault();
+    alert('You clicked me');
+  }
+
   return (
     <div>
-    <Hero Item={ItemObj}/>
+      <form onSubmit={submitForm}>
+        <input type="text" placeholder="Name"/>
+          <button type="submit">Submit</button>
+      </form>
     </div>
   );
 };

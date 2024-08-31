@@ -2,15 +2,14 @@ import { useRef } from "react";
 import Hero from "./component/Hero";
 
 const App = () => {
-  let myHeadLine=useRef();
+  let myImg=useRef();
   const change=()=>{
-    myHeadLine.current.innerText="MY Love for React Native";
+    myImg.current.src="https://placehold.co/600x400/EEE/31343C";
   }
 
   return (
     <div>
-      <h1 ref={myHeadLine}></h1>
-      <button onClick={change}>Submit</button>
+      <img src="" alt="" />
     </div>
   );
 };

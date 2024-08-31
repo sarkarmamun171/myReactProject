@@ -1,17 +1,16 @@
+import { useRef } from "react";
 import Hero from "./component/Hero";
 
 const App = () => {
-  const submitForm=(e)=>{
-    e.preventDefault();
-    alert('You clicked me');
+  let myHeadLine=useRef();
+  const change=()=>{
+    myHeadLine.current.innerText="MY Love for React Native";
   }
 
   return (
     <div>
-      <form onSubmit={submitForm}>
-        <input type="text" placeholder="Name"/>
-          <button type="submit">Submit</button>
-      </form>
+      <h1 ref={myHeadLine}></h1>
+      <button onClick={change}>Submit</button>
     </div>
   );
 };

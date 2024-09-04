@@ -1,15 +1,12 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Hero from "./component/Hero";
 
 const App = () => {
-  let myImg=useRef();
-  const change=()=>{
-    myImg.current.src="https://placehold.co/600x400/EEE/31343C";
-  }
-
+  const [number,setNumber]=useState(0);
   return (
     <div>
-      <img src="" alt="" />
+      <h1>Number:{number}</h1>
+      <button onClick={()=>setNumber(number+1)}>Click</button>
     </div>
   );
 };

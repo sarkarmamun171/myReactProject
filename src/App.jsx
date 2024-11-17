@@ -1,14 +1,18 @@
+import './App.css'
 import { useRef, useState } from "react";
-import Hero from "./component/Hero";
+import Hero from "./components/Hero";
+import Home from "./components/Home/Home";
+import Blogs from './components/Blogs/Blogs';
+import { reactRefresh } from 'eslint-plugin-react-refresh';
 
-const App = () => {
-  const [number,setNumber]=useState(0);
-  return (
+
+function App(){
+  return(
     <div>
-      <h1>Number:{number}</h1>
-      <button onClick={()=>setNumber(number+1)}>Click</button>
+      <Home></Home>
+      <Blogs></Blogs>
     </div>
-  );
-};
+  )
+}
 
 export default App;

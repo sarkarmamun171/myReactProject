@@ -6,7 +6,6 @@ const expolyDate ={
     margin:'30px'
 }
 const ExployData = (props)=>{
-   
     return(
         <div style={expolyDate}>
             <h4>Expoly Data for Dynamic</h4>

@@ -4,6 +4,7 @@ import Blogs from './components/Blogs/Blogs';
 import Service from './components/Service/Service';
 import ExployData from './components/ExploryData/ExployData';
 import Products from './components/Products/Products';
+import Hooks from './components/Hooks/Hooks';
 
 
 function App(){
@@ -23,6 +24,7 @@ function App(){
           alert = {alertkk}
         ></Products>)
       }
+      <Hooks></Hooks>
     </div>
   )
 }

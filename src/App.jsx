@@ -1,57 +1,82 @@
 import React, { useState } from "react";
 
-const TodoApp = () => {
-  const [tasks, setTasks] = useState([]); // State for tasks
-  const [newTask, setNewTask] = useState(""); // State for input value
+const FormApp = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
 
-  const addTask = () => {
-    if (newTask.trim() !== "") {
-      setTasks([...tasks, newTask]); // Add new task to the list
-      setNewTask(""); // Clear input
-    }
+  const [submittedData, setSubmittedData] = useState(null);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
-  const deleteTask = (index) => {
-    const updatedTasks = tasks.filter((_, i) => i !== index); // Remove task by index
-    setTasks(updatedTasks);
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Prevent page reload
+    setSubmittedData(formData); // Save submitted data
+    setFormData({ name: "", email: "", message: "" }); // Clear form
   };
 
   return (
-    <div className="p-4 max-w-md mx-auto">
-      <h1 className="text-2xl font-bold mb-4">React To-Do List</h1>
-      <div className="flex items-center mb-4">
-        <input
-          type="text"
-          className="border p-2 flex-1 rounded mr-2"
-          placeholder="Enter a new task"
-          value={newTask}
-          onChange={(e) => setNewTask(e.target.value)}
-        />
+    <div className="p-6 max-w-md mx-auto">
+      <h1 className="text-2xl font-bold mb-4">React Form Example</h1>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className="block font-medium mb-1">Name:</label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            className="border p-2 w-full rounded"
+            placeholder="Enter your name"
+            required
+          />
+        </div>
+        <div>
+          <label className="block font-medium mb-1">Email:</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            className="border p-2 w-full rounded"
+            placeholder="Enter your email"
+            required
+          />
+        </div>
+        <div>
+          <label className="block font-medium mb-1">Message:</label>
+          <textarea
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            className="border p-2 w-full rounded"
+            placeholder="Write your message"
+            required
+          ></textarea>
+        </div>
         <button
-          onClick={addTask}
-          className="bg-blue-500 text-white p-2 rounded"
+          type="submit"
+          className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
         >
-          Add
+          Submit
         </button>
-      </div>
-      <ul className="list-disc pl-6">
-        {tasks.map((task, index) => (
-          <li
-            key={index}
-            className="flex justify-between items-center mb-2 border p-2 rounded"
-          >
-            {task}
-            <button
-              onClick={() => deleteTask(index)}
-              className="text-red-500 hover:underline"
-            >
-              Delete
-            </button>
-          </li>
-        ))}
-      </ul>
+      </form>
+
+      {submittedData && (
+        <div className="mt-6 p-4 bg-green-100 border rounded">
+          <h2 className="text-lg font-bold">Submitted Data:</h2>
+          <p><strong>Name:</strong> {submittedData.name}</p>
+          <p><strong>Email:</strong> {submittedData.email}</p>
+          <p><strong>Message:</strong> {submittedData.message}</p>
+        </div>
+      )}
     </div>
   );
 };
 
-export default TodoApp;
+export default FormApp;

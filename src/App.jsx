@@ -1,32 +1,57 @@
-import './App.css'
-import Home from "./components/Home/Home";
-import Blogs from './components/Blogs/Blogs';
-import Service from './components/Service/Service';
-import ExployData from './components/ExploryData/ExployData';
-import Products from './components/Products/Products';
-import Hooks from './components/Hooks/Hooks';
+import React, { useState } from "react";
 
+const TodoApp = () => {
+  const [tasks, setTasks] = useState([]); // State for tasks
+  const [newTask, setNewTask] = useState(""); // State for input value
 
-function App(){
-  const products =[
-    {name:'Nokia',price:1500},
-    {name:'Samsung',price:1700},
-    {name:'Vivo',price:17000}
-  ]
-  const alertkk=()=>{
-    alert('HandSet')
-} 
-  return(
-    <div>
-      {
-        products.map(product =><Products
-          product = {product}
-          alert = {alertkk}
-        ></Products>)
-      }
-      <Hooks></Hooks>
+  const addTask = () => {
+    if (newTask.trim() !== "") {
+      setTasks([...tasks, newTask]); // Add new task to the list
+      setNewTask(""); // Clear input
+    }
+  };
+
+  const deleteTask = (index) => {
+    const updatedTasks = tasks.filter((_, i) => i !== index); // Remove task by index
+    setTasks(updatedTasks);
+  };
+
+  return (
+    <div className="p-4 max-w-md mx-auto">
+      <h1 className="text-2xl font-bold mb-4">React To-Do List</h1>
+      <div className="flex items-center mb-4">
+        <input
+          type="text"
+          className="border p-2 flex-1 rounded mr-2"
+          placeholder="Enter a new task"
+          value={newTask}
+          onChange={(e) => setNewTask(e.target.value)}
+        />
+        <button
+          onClick={addTask}
+          className="bg-blue-500 text-white p-2 rounded"
+        >
+          Add
+        </button>
+      </div>
+      <ul className="list-disc pl-6">
+        {tasks.map((task, index) => (
+          <li
+            key={index}
+            className="flex justify-between items-center mb-2 border p-2 rounded"
+          >
+            {task}
+            <button
+              onClick={() => deleteTask(index)}
+              className="text-red-500 hover:underline"
+            >
+              Delete
+            </button>
+          </li>
+        ))}
+      </ul>
     </div>
-  )
-}
+  );
+};
 
-export default App;
+export default TodoApp;
